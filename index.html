@@ -48,9 +48,9 @@ nav a:hover{color:var(--ink);background:var(--soft)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px var(--accent)}
 
-.photo{position:relative;justify-self:end;width:100%;max-width:250px}
+.photo{position:relative;justify-self:end;width:100%;max-width:175px}
 .photo::before{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--accent);border-radius:18px}
-.photo img{position:relative;display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:18px;background:var(--card)}
+.photo img{position:relative;display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%;border-radius:18px;background:var(--card)}
 .tag{position:absolute;left:-18px;bottom:28px;background:var(--accent);color:var(--accent-ink);padding:9px 16px;border-radius:10px;font-weight:600;font-size:14.5px;box-shadow:0 10px 24px -12px #000}
 
 section{padding:84px 0;border-top:1px solid var(--line)}
@@ -155,7 +155,7 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
 
 @media (max-width:780px){
   .hero{grid-template-columns:1fr;gap:48px;padding:40px 0 72px}
-  .photo{justify-self:start;max-width:190px;margin-left:0}
+  .photo{justify-self:start;max-width:135px;margin-left:0}
   .tag{left:auto;right:-14px}
   .grid{grid-template-columns:1fr}
   .card.wide{grid-template-columns:1fr;gap:0}
@@ -164,6 +164,13 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
   section{padding:64px 0}
 }
 @media (max-width:620px){nav a:nth-child(-n+3){display:none}.logo span{display:none}}
+
+.quiz-panel{margin-top:8px}
+.quiz-count,.quiz-score{font-size:14px;color:var(--muted);font-weight:700}
+.quiz-answers{margin:16px 0}
+.quiz-answers button:disabled{opacity:.72;cursor:default}
+.quiz-panel .chip:disabled{opacity:.45;cursor:not-allowed}
+
 </style>
 </head>
 <body>
@@ -187,7 +194,7 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
         <div class="pill"><span class="dot"></span>Disponible pour des projets</div>
         <h1>Je crée des sites web <span>et des outils intelligents.</span></h1>
         <p class="role" aria-label="Développeur web, créateur de SaaS, apprenti administrateur Linux">Je suis <b id="role"></b><i></i></p>
-        <p class="lead">Je m’appelle Herinjara Tanjona Cecilin, j’ai 20 ans et j’étudie les technologies de l’information. Je conçois des sites clairs et rapides, des applications SaaS, et j’apprends à les faire tourner sur des serveurs Linux.</p>
+        <p class="lead">Je m’appelle Herinjara Tanjona Cecilin, j’ai 20 ans et je prépare une licence en technologie informatique. Je conçois des sites clairs et rapides, des applications SaaS, et j’apprends à les faire tourner sur des serveurs Linux.</p>
         <div class="btns">
           <a class="btn primary" href="#contact">Me contacter</a>
           <a class="btn" href="#competences">Voir mes compétences</a>
@@ -224,6 +231,18 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
           <h3>Systèmes et réseaux</h3>
           <p>Configurer, relier et maintenir une infrastructure.</p>
           <ul class="tags"><li>Administration réseau</li><li>Linux (bases)</li></ul>
+        </article>
+        <article class="card wide">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+          <div>
+            <h3>Bureautique, design et outils numériques</h3>
+            <p>J’utilise également des outils de bureautique, de création visuelle et de réseau.</p>
+            <ul class="tags">
+              <li>Microsoft Word</li><li>Microsoft Excel</li><li>Microsoft PowerPoint</li>
+              <li>Cisco Packet Tracer</li><li>Intelligence artificielle (IA)</li><li>Canva</li>
+              <li>Adobe Photoshop</li><li>Outils Adobe</li>
+            </ul>
+          </div>
         </article>
       </div>
       <p class="legend"><b>En bleu</b> : ce que je pratique le plus. Le reste est en cours d’apprentissage.</p>
@@ -278,14 +297,32 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
       </div>
     </section>
 
+    <section id="mini-jeu">
+      <h2>Mini-jeu : quiz informatique</h2>
+      <p class="sub">Teste tes connaissances avec une petite question interactive.</p>
+      <div class="panel full quiz-panel">
+        <p class="quiz-count" id="quiz-count">Question 1 sur 3</p>
+        <h3 id="quiz-question">Que signifie CPU ?</h3>
+        <div class="seg quiz-answers" id="quiz-answers">
+          <button type="button" data-answer="0">Central Processing Unit</button>
+          <button type="button" data-answer="1">Computer Personal Utility</button>
+          <button type="button" data-answer="2">Central Program User</button>
+        </div>
+        <p class="info" id="quiz-feedback" aria-live="polite">Choisis une réponse pour commencer.</p>
+        <button class="chip" id="quiz-next" type="button" disabled>Question suivante</button>
+        <p class="quiz-score" id="quiz-score">Score : 0 / 3</p>
+      </div>
+    </section>
+
     <section id="parcours">
       <h2>Formation</h2>
       <p class="sub">Mon parcours, du collège à mes études actuelles.</p>
       <ul class="path">
-        <li><h3>BEPC</h3><p>Brevet d’études du premier cycle</p></li>
-        <li><h3>Baccalauréat scientifique</h3><p>Série scientifique</p></li>
-        <li><h3>DALF</h3><p>Diplôme approfondi de langue française</p></li>
-        <li class="now"><h3>Technologie informatique</h3><p>Études en cours</p></li>
+        <li><h3>BEPC</h3><p>Brevet d’études du premier cycle — obtenu au lycée Sainte-Thérèse.</p></li>
+        <li><h3>Baccalauréat scientifique</h3><p>Baccalauréat obtenu au Lycée Catholique Notre-Dame de Lourdes.</p></li>
+        <li><h3>DALF</h3><p>Diplôme approfondi de langue française.</p></li>
+        <li><h3>Certificat — Tableau d’honneur</h3><p>Distinction scolaire.</p></li>
+        <li class="now"><h3>L2 — Technologie informatique</h3><p>Étudiant en deuxième année à Orion University.</p></li>
       </ul>
     </section>
 
@@ -293,6 +330,7 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
       <h2>Travaillons ensemble</h2>
       <p class="sub">Un site à créer, un outil en ligne, un coup de main technique ? Écris-moi, je te réponds vite.</p>
       <a class="mail" href="mailto:tanjonacecilin850@gmail.com">tanjonacecilin850@gmail.com</a>
+      <a class="mail" href="tel:+261327531680" aria-label="Appeler le 032 75 316 80">032 75 316 80</a>
       <div class="btns">
         <a class="btn primary" href="mailto:tanjonacecilin850@gmail.com?subject=Projet%20web">Envoyer un e-mail</a>
         <button class="btn" id="copy" type="button">Copier l’adresse</button>
@@ -366,7 +404,7 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
   setView('vitrine');
   /* agent IA */
   var chat=document.getElementById('chat'),qs=document.getElementById('qs');
-  var Q=[['Que sais-tu faire ?','Je crée des sites vitrines, des sites dynamiques et des applications SaaS. Je m’intéresse aussi aux agents IA et à l’administration de réseaux et de systèmes Linux.'],['Quel est ton niveau ?','J’ai 18 ans et j’étudie la technologie informatique. Je pratique surtout le développement web. L’IA, les réseaux et Linux sont en cours d’apprentissage.'],['Comment te contacter ?','Par e-mail à tanjonacecilin850@gmail.com. Tu peux aussi utiliser le bouton de la section Contact.']];
+  var Q=[['Que sais-tu faire ?','Je crée des sites vitrines, des sites dynamiques et des applications SaaS. Je m’intéresse aussi aux agents IA et à l’administration de réseaux et de systèmes Linux.'],['Quel est ton niveau ?','J’ai 20 ans et je prépare une licence en technologie informatique. Je pratique surtout le développement web. L’IA, les réseaux et Linux sont en cours d’apprentissage.'],['Comment te contacter ?','Par e-mail à tanjonacecilin850@gmail.com ou par téléphone au 032 75 316 80.']];
   var busy=false;
   function say(t,c){var d=document.createElement('div');d.className='b '+c;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d}
   qs.addEventListener('click',function(e){
@@ -472,5 +510,27 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);f
   if(!reduce)requestAnimationFrame(step);
 })();
 </script>
+
+<script>
+(function(){
+  var questions=[
+    {q:'Que signifie CPU ?',a:['Central Processing Unit','Computer Personal Utility','Central Program User'],correct:0,why:'Le CPU est le processeur qui exécute les instructions.'},
+    {q:'Quel outil sert à créer des présentations ?',a:['Microsoft Excel','Microsoft PowerPoint','Cisco Packet Tracer'],correct:1,why:'PowerPoint permet de créer des diapositives et des présentations.'},
+    {q:'À quoi sert principalement Cisco Packet Tracer ?',a:['À retoucher des photos','À écrire des documents','À simuler des réseaux informatiques'],correct:2,why:'Packet Tracer permet de concevoir et simuler des réseaux.'}
+  ];
+  var index=0,score=0,answered=false;
+  var q=document.getElementById('quiz-question'),answers=document.getElementById('quiz-answers'),feedback=document.getElementById('quiz-feedback'),next=document.getElementById('quiz-next'),count=document.getElementById('quiz-count'),scoreEl=document.getElementById('quiz-score');
+  if(!q||!answers||!next)return;
+  function render(){
+    var item=questions[index];answered=false;count.textContent='Question '+(index+1)+' sur '+questions.length;q.textContent=item.q;feedback.textContent='Choisis une réponse.';next.disabled=true;next.textContent=index===questions.length-1?'Recommencer le quiz':'Question suivante';answers.innerHTML='';
+    item.a.forEach(function(label,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=label;b.dataset.answer=i;b.addEventListener('click',choose);answers.appendChild(b)});
+    scoreEl.textContent='Score : '+score+' / '+questions.length;
+  }
+  function choose(e){if(answered)return;answered=true;var chosen=Number(e.currentTarget.dataset.answer),item=questions[index];if(chosen===item.correct){score++;feedback.textContent='Bonne réponse ! '+item.why}else{feedback.textContent='Pas tout à fait. Bonne réponse : '+item.a[item.correct]+'. '+item.why}Array.prototype.forEach.call(answers.children,function(b){b.disabled=true;if(Number(b.dataset.answer)===item.correct)b.setAttribute('aria-pressed','true')});scoreEl.textContent='Score : '+score+' / '+questions.length;next.disabled=false;}
+  next.addEventListener('click',function(){if(!answered)return;if(index===questions.length-1){index=0;score=0}else{index++}render()});
+  render();
+})();
+</script>
+
 </body>
 </html>
